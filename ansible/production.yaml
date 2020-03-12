@@ -1,0 +1,5 @@
+all:
+  hosts:
+    homenas:
+      ansible_connection: ssh
+      ansible_host: 192.168.0.50

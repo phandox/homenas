@@ -1,0 +1,27 @@
+samba_log: /var/log/samba
+samba_log_size: 60000
+samba_log_level: '3 passdb:5 auth:10 winbind:2 '
+samba_map_to_guest: Never
+# Settings for Samba bertvv.samba
+samba_users:
+  - name: lukas.nagy
+    password: "{{ vault_lukas_nagy_password }}"
+
+  - name: kristyna.ruzickova
+    password: "{{ vault_kristyna_ruzickova_password }}"
+
+samba_shares:
+  - name: "backups_lukas.nagy"
+    comment: 'Backup SMB share for lukas.nagy user'
+    group: lukas.nagy
+    write_list: +lukas.nagy
+    valid_users: +lukas.nagy
+  - name: "backups_kristyna.ruzickova"
+    comment: 'Backup SMB share for kristyna.ruzickova user'
+    group: kristyna.ruzickova
+    write_list: +kristyna.ruzickova
+    valid_users: +kristyna.ruzickova
+
+samba_shares_root: /data/samba
+
+

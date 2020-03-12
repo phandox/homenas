@@ -1,0 +1,17 @@
+- hosts: homenas
+  
+  tasks:
+    - name: Set up SELinux context for different default SSH home (for SSH)
+      sefcontext:
+        target: '/data/home/[^/]+/\.ssh(/.*)?'
+        setype: ssh_home_t
+        state: present
+
+    - name: Apply new SELinux file context to filesystem
+      command: restorecon -irv /data/home/
+  
+  roles:
+    - singleplatform-eng.users
+    - geerlingguy.firewall
+    - bertvv.samba
+    - samba-standalone

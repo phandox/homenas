@@ -1,0 +1,9 @@
+- name: Create symlink to backup files for users
+  file:
+    path: "{{ item.home }}/backup"
+    src: "{{ samba_shares_root }}/backups_{{ item.username }}"
+    owner: "{{ item.username }}"
+    group: "{{ item.username }}"
+    state: link
+  loop:
+    "{{ users }}"

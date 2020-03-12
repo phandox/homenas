@@ -1,0 +1,17 @@
+# Geerlingguy firewall role configuration
+firewall_state: started
+firewall_enabled_at_boot: true
+
+# TCP UDP port allowance on INPUT
+firewall_allowed_tcp_ports:
+  # Allow SSH access
+  - "22"
+  # Open ports for SMBD
+  - "139"
+  - "445"
+firewall_allowed_udp_ports: []
+
+# Generic firewall settings
+firewall_log_dropped_packets: true
+firewall_disable_firewalld: true
+firewall_disable_ufw: true
