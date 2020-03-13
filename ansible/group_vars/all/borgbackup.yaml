@@ -1,0 +1,5 @@
+borgbackup_user: backup_user
+pool: "{{ users['backup_user'].home }}/repositories"
+auth_users:
+  - host: x230.prg.lukasnagy.cz
+    key: "{{ users['lukas.nagy']}}"

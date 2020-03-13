@@ -2,8 +2,56 @@
   yum:
     name: epel-release
     state: present
+
 - name: Install Borg Backup
   yum:
     name: borgbackup
     state: present
     update_cache: yes
+
+- name: Create .ssh for backup user
+  file:
+    path: '/data/home/backup_user/.ssh'
+    owner: 'backup_user'
+    group: 'backup_user'
+    mode: 0700
+    state: directory
+
+- name: Create repository directory
+  file:
+    path: '/data/home/backup_user/repositories'
+    owner: 'backup_user'
+    group: 'backup_user'
+    mode: 0700
+    state: directory
+
+- name: Add restricted ssh authorized keys to backup user account
+  authorized_key:
+    user: backup_user
+    key: "{{ item.borgbackup.key }}"
+    key_options: 'command="cd /data/home/backup_user/repositories/{{ item.host }};borg serve --restrict-to-path /data/home/backup_user/repositories/{{ item.host }}",restrict'
+  loop:
+    "{{ users }}"
+  when:
+    item.borgbackup.client | bool
+
+- name: Set up permission for authorized_keys file
+  file:
+    path: '/data/home/backup_user/.ssh/authorized_keys'
+    owner: 'backup_user'
+    group: 'backup_user'
+    mode: 0600
+    state: file
+
+- name: Create client pool directories
+  file:
+    path: "/data/home/backup_user/repositories/{{ item.host }}"
+    owner: "backup_user"
+    group: "backup_user"
+    mode: 0700
+    state: directory
+  loop:
+    "{{ users }}"
+  when:
+    item.borgbackup.client | bool
+
