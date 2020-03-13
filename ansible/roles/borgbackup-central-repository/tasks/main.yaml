@@ -1,0 +1,9 @@
+- name: Add EPEL repository
+  yum:
+    name: epel-release
+    state: present
+- name: Install Borg Backup
+  yum:
+    name: borgbackup
+    state: present
+    update_cache: yes

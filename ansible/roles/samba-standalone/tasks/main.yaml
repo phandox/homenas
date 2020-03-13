@@ -7,3 +7,5 @@
     state: link
   loop:
     "{{ users }}"
+  when:
+    item.samba_user | bool
