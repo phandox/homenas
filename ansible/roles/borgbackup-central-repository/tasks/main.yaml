@@ -2,12 +2,14 @@
   yum:
     name: epel-release
     state: present
+  become: yes
 
 - name: Install Borg Backup
   yum:
     name: borgbackup
     state: present
     update_cache: yes
+  become: yes
 
 - name: Create .ssh for backup user
   file:

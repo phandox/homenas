@@ -11,8 +11,11 @@
       command: restorecon -irv /data/home/
   
   roles:
-    - singleplatform-eng.users
-    - geerlingguy.firewall
-    - bertvv.samba
-    - samba-standalone
-    - borgbackup-central-repository
+    - role: singleplatform-eng.users
+      vars: 
+        - ansible_become: true
+    - role: geerlingguy.firewall
+    - role: bertvv.samba
+    - role: samba-standalone
+    - role: borgbackup-central-repository
+#    - cloudalchemy.coredns

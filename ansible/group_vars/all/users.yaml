@@ -2,6 +2,7 @@ users:
   - username: lukas.nagy
     name: Lukas Nagy
     uid: 1001
+    groups: ['wheel', 'systemd-journal']
     home: /data/home/lukas.nagy
     ssh_key:
       - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDIsy1exxUVNL4doHL7qOZ6s28zCqeiPxjDh9q/16uezL43Rx2FMJ709GsZHItEE3f65wgH/5DGMUx1M7CZLBOs6BvkWp6uF22NYR/vO5Saq20MpuAn0/R7NuQpebZrCDWzN0pTFeh9C1LZxva3Aa+iaSwQC8Wtw17Dcq8R4y3D7A8iLpriueXTvYRfJ6/MfwHxIg1BnrPlA1h/gNX3N/vTpaX4hGa/zy1v9HiJw2oiYrf1Q+NTgVZYKQtlG6X8txEeFS964oBM0mIjr7ZTupBopKyqkjWt1NT+uqJjhp7wP4W5YmBfAJijOTRUSfS/D4Xn79OBaIOuAX0WihDd6Bph lukas.nagy@gnsystems.sk"
@@ -28,6 +29,19 @@ users:
     home: /data/home/backup_user
     shell: /bin/bash
     password: "{{ vault_backup_user_password | password_hash('sha512')}}"
+    samba_user: no
+    borgbackup:
+      client: no
+
+  - username: ansible_user
+    name: Ansible Automation user
+    uid: 1004
+    groups: ['wheel']
+    ssh_key:
+      - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDmR8DC3cvT1AFEol+3vaetQQ2bl8tkFvXdHQTIj2K4hMsLK14CY8CSlaEaB7Rwp5jNkd4ClzaLA6Po0MGqEyMHU142zM4ZLhJyUFBV+lzNrROZZXNrnslT1FACKpno/xUbUXIS4LzSbqopzhSnuLHG0L0sGocXbP8b9BzcEzyrhSSUPH4iRWpIDkzFW9d8Z0UHU3GwrSrgGMIwZ+CGGdk4IppBJfyI65wpaWSlhQQETPQzqDbTUJcm2oBtErOCmU+nenvM0xw2mcsD98P2rzb1XwrBYXK9UKwksk0fe79Qxz24K2xfLNIsc2xa5JcEzyhtzVowiZk0z+zMtTFSRYKn lukas@solus-x230"
+    home: /data/home/ansible_user
+    shell: /bin/bash
+    password: "{{ vault_ansible_user_password | password_hash('sha512')}}"
     samba_user: no
     borgbackup:
       client: no
