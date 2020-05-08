@@ -30,12 +30,12 @@
 - name: Add restricted ssh authorized keys to backup user account
   authorized_key:
     user: backup_user
-    key: "{{ item.borgbackup.key }}"
-    key_options: 'command="cd /data/home/backup_user/repositories/{{ item.host }};borg serve --restrict-to-path /data/home/backup_user/repositories/{{ item.host }}",restrict'
+    key: "{{ item.1.key }}"
+    key_options: 'command="cd /data/home/backup_user/repositories/{{ item.1.host }};borg serve --restrict-to-path /data/home/backup_user/repositories/{{ item.1.host }}",restrict'
   loop:
-    "{{ users }}"
+    "{{ users|subelements('borgbackup.backup_repositories', skip_missing=True)}}"
   when:
-    item.borgbackup.client | bool
+    item.0.borgbackup.client | bool
 
 - name: Set up permission for authorized_keys file
   file:
@@ -47,13 +47,12 @@
 
 - name: Create client pool directories
   file:
-    path: "/data/home/backup_user/repositories/{{ item.host }}"
+    path: "/data/home/backup_user/repositories/{{ item.1.host }}"
     owner: "backup_user"
     group: "backup_user"
     mode: 0700
     state: directory
   loop:
-    "{{ users }}"
+    "{{ users|subelements('borgbackup.backup_repositories', skip_missing=True)}}"
   when:
-    item.borgbackup.client | bool
-
+    item.0.borgbackup.client | bool

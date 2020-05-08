@@ -11,6 +11,7 @@
       command: restorecon -irv /data/home/
   
   roles:
+    # TODO set up for root user, after that use the ansible user
     - role: singleplatform-eng.users
       vars: 
         - ansible_become: true
@@ -18,4 +19,5 @@
     - role: bertvv.samba
     - role: samba-standalone
     - role: borgbackup-central-repository
-#    - cloudalchemy.coredns
+      tags: [ borgbackup ]
+    #- role: cloudalchemy.coredns

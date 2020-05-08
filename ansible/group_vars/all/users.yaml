@@ -6,12 +6,16 @@ users:
     home: /data/home/lukas.nagy
     ssh_key:
       - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDIsy1exxUVNL4doHL7qOZ6s28zCqeiPxjDh9q/16uezL43Rx2FMJ709GsZHItEE3f65wgH/5DGMUx1M7CZLBOs6BvkWp6uF22NYR/vO5Saq20MpuAn0/R7NuQpebZrCDWzN0pTFeh9C1LZxva3Aa+iaSwQC8Wtw17Dcq8R4y3D7A8iLpriueXTvYRfJ6/MfwHxIg1BnrPlA1h/gNX3N/vTpaX4hGa/zy1v9HiJw2oiYrf1Q+NTgVZYKQtlG6X8txEeFS964oBM0mIjr7ZTupBopKyqkjWt1NT+uqJjhp7wP4W5YmBfAJijOTRUSfS/D4Xn79OBaIOuAX0WihDd6Bph lukas.nagy@gnsystems.sk"
+      - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILz/idfztYG1NpMelohtgFI6nsQXArxfaTlYrOvYEN8R nagyl@nagyl-lat7490"
     password: "{{ vault_lukas_nagy_password | password_hash('sha512') }}"
     samba_user: yes
     borgbackup:
       client: yes
-      key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHPJIQ99jdEQdLbAZL6imrhNvI4FdzfXkijUBFt70I9+ luknagy@x230.prg.lukasnagy.cz"
-    host: x230.prg.lukasnagy.cz
+      backup_repositories: 
+        - key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHPJIQ99jdEQdLbAZL6imrhNvI4FdzfXkijUBFt70I9+ luknagy@x230.prg.lukasnagy.cz"
+          host: x230.prg.lukasnagy.cz
+        - key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILz/idfztYG1NpMelohtgFI6nsQXArxfaTlYrOvYEN8R nagyl@nagyl-lat7490"
+          host: nagyl-lat7490
 
   - username: kristyna.ruzickova
     name: Kristyna Ruzickova
