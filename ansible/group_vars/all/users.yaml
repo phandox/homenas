@@ -6,7 +6,7 @@ users:
     home: /data/home/lukas.nagy
     ssh_key:
       - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDIsy1exxUVNL4doHL7qOZ6s28zCqeiPxjDh9q/16uezL43Rx2FMJ709GsZHItEE3f65wgH/5DGMUx1M7CZLBOs6BvkWp6uF22NYR/vO5Saq20MpuAn0/R7NuQpebZrCDWzN0pTFeh9C1LZxva3Aa+iaSwQC8Wtw17Dcq8R4y3D7A8iLpriueXTvYRfJ6/MfwHxIg1BnrPlA1h/gNX3N/vTpaX4hGa/zy1v9HiJw2oiYrf1Q+NTgVZYKQtlG6X8txEeFS964oBM0mIjr7ZTupBopKyqkjWt1NT+uqJjhp7wP4W5YmBfAJijOTRUSfS/D4Xn79OBaIOuAX0WihDd6Bph lukas.nagy@gnsystems.sk"
-      - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILz/idfztYG1NpMelohtgFI6nsQXArxfaTlYrOvYEN8R nagyl@nagyl-lat7490"
+      - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCyTs4sDsd1TtdSslXdY+sv4jHxUsY6dWg3DGPdKbfr4dL9bNfC86fdHeKxTXGYwTwAE7Jn2LzYsHJZ8jbgJffT5hnnImP1nOILt4S4sldftSx+Z/ADsWx8iS4UUCq3DEpAoBWMSZar/3HK0v0zug2olXvPrERpSZZIovjUCgDHn9AXyEi2jUoey4YbVV7d6KEyFhHH/BlJKQF+gkQ1B7wTudOo3T+tG7lhso14hlxW72ON3BELz8WQ8tHECP9IIhK4G5BODsLPnWqtcWoPnid03Zrt0mHQ/qJq5rd1jYWc8RLObrTDraFAeer1f/fB1pRdgALbcjuDziWtvJ3nFJIP/pByTRFYSzcDl+XI2C+z0QNcAwZAWCKPVUAWqP/2p42IKjsYmAkK6hO/rnGYJL74yUgsP3pN92mHXFUquvYZItJGGpHJ06wSLi9bnj5jrFOaE/rz66I0Q7ilwQ5h0PDI46YN257RdKRjaYtclRpRxaQeThLHP5BpvaTKA1Djry94LX/EPR1bxOROPvhBkkN2u6lyIyovkDs9PDMHhgjlxYxsUuTxyQbi3ass5cWjdYMObyR/6tKn2r2jdmW3FxV/MRbkCf7za7eXCqawg6z6EBZhcl3cweUUfEIjXT0aF9o6P50r9PuWZLboEZRvq2fnKZaW1MhZHL4kNQ+GDRb3Kw== lukas.nagy@avast.com"
     password: "{{ vault_lukas_nagy_password | password_hash('sha512') }}"
     samba_user: yes
     borgbackup:
