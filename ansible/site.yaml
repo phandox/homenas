@@ -20,4 +20,3 @@
     - role: samba-standalone
     - role: borgbackup-central-repository
       tags: [ borgbackup ]
-    #- role: cloudalchemy.coredns
