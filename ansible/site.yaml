@@ -16,6 +16,8 @@
       vars: 
         - ansible_become: true
     - role: geerlingguy.firewall
+    - role: geerlingguy.ntp
+      tags: [ ntp ]
     - role: bertvv.samba
     - role: samba-standalone
     - role: borgbackup-central-repository

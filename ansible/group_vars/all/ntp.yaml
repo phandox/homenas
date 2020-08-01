@@ -1,0 +1,14 @@
+#ntp_enabled: true
+
+ntp_timezone: Europe/Prague
+ntp_package: ntp
+ntp_daemon: ntpd
+
+ntp_config_file: /etc/ntp.conf
+ntp_manager_config: true
+
+#ntp_restrict:
+#  - "127.0.0.1"
+#  - "::1"
+
+ntp_cron_handler_enabled: true
