@@ -3,15 +3,14 @@ firewall_state: started
 firewall_enabled_at_boot: true
 
 # TCP UDP port allowance on INPUT
-firewall_allowed_tcp_ports:
-  # Allow SSH access
-  - "22"
-  # Open ports for SMBD
-  - "139"
-  - "445"
+firewall_allowed_tcp_ports: []
 firewall_allowed_udp_ports: []
+firewall_additional_rules:
+  - "iptables -A INPUT -p tcp -s 192.168.0.0/24 --dport 22 -j ACCEPT"
+  - "iptables -A INPUT -p tcp -s 192.168.0.0/24 --dport 139 -j ACCEPT"
+  - "iptables -A INPUT -p tcp -s 192.168.0.0/24 --dport 445 -j ACCEPT"
 
 # Generic firewall settings
-firewall_log_dropped_packets: true
+firewall_log_dropped_packets: false
 firewall_disable_firewalld: true
 firewall_disable_ufw: true
