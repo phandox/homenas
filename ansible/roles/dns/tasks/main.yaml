@@ -1,0 +1,38 @@
+- name: Ensure recursive DNS is installed and configured
+  import_role:
+    name: powerdns.pdns_recursor
+
+- name: Ensure authoritative DNS is installed and configured
+  import_role:
+    name: powerdns.pdns
+
+- name: Ensure config directory for zones
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0755'
+    owner: root
+    group: root
+  loop:
+    - /etc/named/
+    - /var/named
+
+- name: Copy named.conf zone configuration
+  copy:
+    src: named.conf
+    dest: "{{ pdns_backends.bind.config }}"
+    mode: '0644'
+    owner: "{{ pdns_user }}"
+    group: "{{ pdns_group }}"
+
+- name: Copy zone files
+  copy:
+    src: "{{ item }}"
+    dest: /var/named/
+    mode: '0644'
+    owner: "{{ pdns_user }}"
+    group: "{{ pdns_group }}"
+  loop:
+    - db.prg.lukasnagy.cz
+    - db.0.168.192.in-addr.arpa
+    - db.0.0.127.in-addr.arpa

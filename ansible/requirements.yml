@@ -1,0 +1,8 @@
+---
+- src: https://github.com/phandox/ansible-nextcloud
+  version: master
+  name: rbicker.nextcloud
+- src: powerdns.pdns_recursor
+  version: v1.4.0
+- src: powerdns.pdns
+  version: v1.6.1

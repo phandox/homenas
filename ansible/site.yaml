@@ -22,3 +22,6 @@
     - role: samba-standalone
     - role: borgbackup-central-repository
       tags: [ borgbackup ]
+    - role: dns
+    - role: rbicker.nextcloud
+      tags: [ nextcloud ]

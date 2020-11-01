@@ -1,0 +1,15 @@
+## PDNS Resolver config ##
+pdns_rec_config:
+  allow-from: '192.168.0.0/24'
+  local-address: "{{ ansible_default_ipv4.address }}:53"
+  forward-zones:
+    - 'prg.lukasnagy.cz=127.0.0.1:5300'
+
+## PDNS configuration ##
+pdns_config:
+  master: true
+  local-address: "{{ ansible_lo.ipv4.address }}"
+  local-port: 5300
+pdns_backends:
+  bind:
+    config: '/etc/named/named.conf'

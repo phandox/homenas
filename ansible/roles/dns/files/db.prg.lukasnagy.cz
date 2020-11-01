@@ -1,0 +1,17 @@
+$ORIGIN prg.lukasnagy.cz.
+$TTL 30m
+
+@               IN  SOA     ns1.prg.lukasnagy.cz. admin.prg.lukasnagy.cz. (
+                            2020103101  ; serial
+                            4h          ; refresh
+                            30m         ; retry
+                            1d          ; expire
+                            20m)        ; negative caching TTL
+
+                IN  NS          ns1.prg.lukasnagy.cz.
+                IN  A           192.168.0.50
+                IN  MX  10      mail.prg.lukasnagy.cz.
+
+ns1             IN  A       192.168.0.50
+dns-prod-001    IN  CNAME   ns1.prg.lukasnagy.cz.
+nextcloud       IN  CNAME   ns1.prg.lukasnagy.cz.
