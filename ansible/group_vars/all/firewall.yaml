@@ -6,9 +6,15 @@ firewall_enabled_at_boot: true
 firewall_allowed_tcp_ports: []
 firewall_allowed_udp_ports: []
 firewall_additional_rules:
+  # Allow SSH access
   - "iptables -A INPUT -p tcp -s 192.168.0.0/24 --dport 22 -j ACCEPT"
+  # Allow SMB access
   - "iptables -A INPUT -p tcp -s 192.168.0.0/24 --dport 139 -j ACCEPT"
   - "iptables -A INPUT -p tcp -s 192.168.0.0/24 --dport 445 -j ACCEPT"
+  # Allow nextcloud HTTPS access
+  - "iptables -A INPUT -p tcp -s 192.168.0.0/24 --dport 443 -j ACCEPT"
+  # Allow access to PDNS recursor
+  - "iptables -A INPUT -p udp -s 192.168.0.0/24 --dport 53 -j ACCEPT"
 
 # Generic firewall settings
 firewall_log_dropped_packets: false

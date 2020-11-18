@@ -1,0 +1,15 @@
+nextcloud_domain: nextcloud.prg.lukasnagy.cz
+
+nextcloud_version: latest-19
+php_version: "7.4"
+nextcloud_ssl_subject: "/C=CZ/ST=Prague/L=Prague/CN={{ nextcloud_domain }}"
+nextcloud_web_root: /var/www/nextcloud
+nextcloud_data_root: /data/nextcloud/data
+
+nextcloud_admin_user: admin
+nextcloud_admin_pw: "{{ vault_nextcloud_admin_pw }}"
+nextcloud_mysql_user: nextcloud
+nextcloud_mysql_pw: "{{ vault_nextcloud_mysql_pw }}"
+mysql_root_pw: "{{ vault_mysql_root_pw }}"
+
+nextcloud_upload_tmp_dir: /data/nextcloud/tmp

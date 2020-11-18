@@ -1,0 +1,12 @@
+$ORIGIN 0.168.192.in-addr.arpa.
+$TTL 30m
+
+@	        IN	SOA	    ns1.prg.lukasnagy.cz.	admin.prg.lukasnagy.cz. (
+			            2020103101  ; serial
+			            4h          ; refresh
+			            30m         ; retry
+			            1d          ; expire
+			            20m)        ; negative caching TTL
+
+
+50	        IN	PTR	    ns1.prg.lukasnagy.cz
