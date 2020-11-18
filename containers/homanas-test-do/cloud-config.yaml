@@ -1,0 +1,13 @@
+#cloud-config
+users:
+  - name: nagyl
+    ssh-authorized-keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDak+j85SUuPdFkmr/ozWnUsHnu6w0sJz63zJ8o0pgLqBPQd44WzjwfP3Ex2n/Nk+6UAKU3XkgotQiWYn6+FGLFqkTre3Jrn9Va75qwm269oYlGQZBEWY993Jhd6pdfVkDL7aB3XissTwH8X3FkWGJPpVgECKejktVXb76SDuH5iKDTqnBxNlM8CeJdn/5rS9P8KoEmeWovPO81Ue6r52uzFGDdJGmCfZw8oCwLG/JiakkfHwHoTLr8/lQw0H66g0MIGIOCb3SPIf6mciKYB2sq8pTZwrwB7sQzI+DDReUR77HkCapHtat9ga/8t2PWcxiGahRw6c0izhoK+yGRlYqj lukas@arch-idea
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    groups: sudo
+    shell: /bin/bash
+runcmd:
+  - sed -i -e '/^PermitRootLogin/s/^.*$/PermitRootLogin no/' /etc/ssh/sshd_config
+  - sed -i -e '/^PasswordAuthentication/s/^.*$/PasswordAuthentication no/' /etc/ssh/sshd_config
+  - sed -i -e '$aAllowUsers nagyl' /etc/ssh/sshd_config
+  - systemctl restart sshd.service
