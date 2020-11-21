@@ -1,0 +1,16 @@
+certbot_create_if_missing: true
+certbot_create_method: standalone
+certbot_admin_email: lukas.nagy@mailbox.org
+certbot_certs:
+    - domains:
+      - nextcloud.prg.lukasnagy.cz
+dns_digitalocean_cred_file: "{{ ansible_user_dir }}/.secrets/certbot/digitalocean.ini"
+
+certbot_create_command: >
+  {{ certbot_script }} certonly
+  --dns-digitalocean
+  --dns-digitalocean-credentials {{ dns_digitalocean_cred_file }}
+  --noninteractive
+  --agree-tos
+  --email {{ cert_item.email | default(certbot_admin_email) }}
+  -d {{ cert_item.domains | join(',') }}

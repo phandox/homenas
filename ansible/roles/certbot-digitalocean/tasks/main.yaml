@@ -1,0 +1,25 @@
+- name: Install DigitalOcean plugin for Certbot DNS-01 challenge
+  package:
+    name: python2-certbot-dns-digitalocean
+    state: present
+
+- name: Create directory for storing secrets
+  file:
+    path: "{{ dns_digitalocean_cred_file | dirname }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    state: directory
+
+- name: Create credentials file
+  template:
+    src: digitalocean.ini.j2
+    dest: "{{ dns_digitalocean_cred_file }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0600'
+
+- name: Include certbot role
+  import_role:
+    name: geerlingguy.certbot
+
+

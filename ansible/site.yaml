@@ -23,5 +23,7 @@
     - role: borgbackup-central-repository
       tags: [ borgbackup ]
     - role: dns
+    - role: certbot-digitalocean
+      tags: [ certbot ]
     - role: rbicker.nextcloud
       tags: [ nextcloud ]

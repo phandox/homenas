@@ -2,7 +2,9 @@ nextcloud_domain: nextcloud.prg.lukasnagy.cz
 
 nextcloud_version: latest-19
 php_version: "7.4"
-nextcloud_ssl_subject: "/C=CZ/ST=Prague/L=Prague/CN={{ nextcloud_domain }}"
+nextcloud_ssl_cert: /etc/letsencrypt/live/{{ nextcloud_domain }}/fullchain.pem
+nextcloud_ssl_key: /etc/letsencrypt/live/{{ nextcloud_domain }}/privkey.pem
+nextcloud_ssl_skip_gen: true # set to true if you do NOT want role to handle ssl cert generation (then you must provide nextcloud_ssl_* configured files)
 nextcloud_web_root: /var/www/nextcloud
 nextcloud_data_root: /data/nextcloud/data
 
